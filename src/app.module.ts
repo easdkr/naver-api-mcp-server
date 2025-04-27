@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { McpModule, McpTransportType } from '@rekog/mcp-nest'
+import { GreetingTool } from './greeting.tool'
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    McpModule.forRoot({
+      name: 'naver-mcp-server',
+      version: '0.0.1',
+      transport: McpTransportType.STDIO,
+    }),
+  ],
+  providers: [GreetingTool],
 })
 export class AppModule {}
